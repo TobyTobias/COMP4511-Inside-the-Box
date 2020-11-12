@@ -4,19 +4,46 @@ import { StyleSheet } from 'react-native';
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 
+import { SearchBar } from 'react-native-elements';
+
 export default function TabTwoScreen() {
+    
+  // state = {
+  //   search: '',
+  // };
+
+  // updateSearch = (search) => {
+  //   this.setState({ search });
+  // };
+
+
+  // const { search } = this.state;
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Tab Two</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="/screens/TabTwoScreen.js" />
-    </View>
+      <View style={styles.container}>
+        <View style={styles.searchBarContainer}>
+          <SearchBar style={styles.searchBar}
+            placeholder="Type Here..."
+            // onChangeText={this.updateSearch}
+            // value={search}
+          />
+        </View>
+        <Text style={styles.title}>Boxes</Text>
+        <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+        <EditScreenInfo path="/screens/TabOneScreen.js" />
+      </View>
   );
 }
 
 const styles = StyleSheet.create({
+  searchBarContainer: {
+    top: 25,
+    height: 100,
+    alignSelf: 'stretch',
+  },
+  searchBar: {
+  },
   container: {
-    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
