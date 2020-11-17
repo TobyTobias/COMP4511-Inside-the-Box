@@ -5,14 +5,15 @@ import * as React from 'react';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-import TabOneScreen from '../screens/TabOneScreen';
+import FriendsScreen from '../screens/FriendsScreen';
+import FriendDetails from '../components/FriendDetails';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import TabThreeScreen from '../screens/TabThreeScreen';
-import { BottomTabParamList, TabOneParamList, TabTwoParamList, TabThreeParamList } from '../types';
+import { BottomTabParamList, FriendsScreenParamList, TabTwoParamList, TabThreeParamList } from '../types';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
-export default function BottomTabNavigator() {
+export default function BottomTabNavigator({navigator}) {
   const colorScheme = useColorScheme();
 
   return (
@@ -20,8 +21,8 @@ export default function BottomTabNavigator() {
       initialRouteName="TabTwo"
       tabBarOptions={{ activeTintColor: Colors[colorScheme].tint, showLabel: false, }}>
       <BottomTab.Screen
-        name="TabOne"
-        component={TabOneNavigator}
+        name="FriendsScreen"
+        component={FriendsScreenNavigator}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="ios-people" color={color} />,
         }}
@@ -52,17 +53,22 @@ function TabBarIcon(props: { name: string; color: string }) {
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
-const TabOneStack = createStackNavigator<TabOneParamList>();
+const FriendsScreenStack = createStackNavigator<FriendsScreenParamList>();
 
-function TabOneNavigator() {
+function FriendsScreenNavigator({navigation}) {
   return (
-    <TabOneStack.Navigator headerMode="none">
-      <TabOneStack.Screen
-        name="TabOneScreen"
-        component={TabOneScreen}
-        options={{ headerTitle: 'Tab One Title' }}
+    <FriendsScreenStack.Navigator headerMode="none">
+      <FriendsScreenStack.Screen
+        name="FriendsScreen"
+        component={FriendsScreen}
+        options={{ headerTitle: 'Friends Screen' }}
       />
-    </TabOneStack.Navigator>
+      <FriendsScreenStack.Screen
+        name="FriendDetails"
+        component={FriendDetails}
+        options={{ headerTitle: 'Friend Detail' }}
+      />
+    </FriendsScreenStack.Navigator>
   );
 }
 
