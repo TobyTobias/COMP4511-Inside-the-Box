@@ -97,6 +97,16 @@ export default function FriendsScreen({navigation}) {
 
       {/* https://reactnative.dev/docs/modal */}
       <Modal
+        animationType="fade"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+        }}
+      >
+        <View style={styles.modalBackground} />
+      </Modal>
+      <Modal
         animationType="slide"
         transparent={true}
         visible={modalVisible}
@@ -136,8 +146,12 @@ const styles = StyleSheet.create({
     bottom: 50,
     right: 25,
   },
-  modalContainer: {
+  modalBackground: {
     backgroundColor: 'rgba(52, 52, 52, 0.8)',
+    flex: 1,
+  },
+  modalContainer: {
+    backgroundColor: 'rgba(52, 52, 52, 0)',
     flex: 1,
     flexDirection: 'column'
   },

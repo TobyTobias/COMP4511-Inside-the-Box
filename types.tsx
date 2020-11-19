@@ -7,6 +7,8 @@ export type BottomTabParamList = {
   FriendsScreen: undefined;
   TabTwo: undefined;
   TabThree: undefined;
+  TabFour: undefined;
+  TabFive: undefined;
 };
 
 export type FriendsScreenParamList = {
@@ -24,4 +26,12 @@ export type TabTwoParamList = {
 
 export type TabThreeParamList = {
   TabThreeScreen: undefined;
+};
+
+export type TabFourParamList = {
+  TabFourScreen: undefined;
+};
+
+export type TabFiveParamList = {
+  TabFiveScreen: undefined;
 };
