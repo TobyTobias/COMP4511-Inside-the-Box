@@ -2,15 +2,29 @@ import React, { useState, useRef } from "react";
 import {
   StyleSheet,
   View,
+  Text,
   TextInput,
-  Button
+  TouchableHighlight
 } from "react-native";
+import { Icon } from 'react-native-elements';
 
 export default function FriendForm({ onNewFriend = f => f, onCloseModal = f => f }) {
   const [inputValue, setValue] = useState("");
   const input = useRef();
   return (
     <View style={styles.container}>
+    <View style={styles.modalHeader}>
+      <Text style={styles.modalHeaderText}>Add Friend</Text>
+      <Icon
+        type="ionicon"
+        name="ios-close" 
+        iconStyle={{color: '#000'}}
+        size={40}
+        onPress={() =>{
+          onCloseModal();
+        }}
+      />
+    </View>
       <View style={styles.formContainer}>
         <TextInput
           ref={input}
@@ -20,16 +34,26 @@ export default function FriendForm({ onNewFriend = f => f, onCloseModal = f => f
           autoCapitalize="none"
           placeholder="first name"
         />
-        <Button
-          title="add"
+        <TouchableHighlight
+          underlayColor="#FFF"
+          style={styles.buttonContainer}
           onPress={() => {
-            console.log("CLOSE MODAL FriendForm");
-            onCloseModal();
-            input.current.blur();
-            onNewFriend(inputValue);
-            setValue("");
+            if (inputValue.trim() != "") {
+              input.current.blur();
+              onNewFriend(inputValue);
+              setValue("");
+              onCloseModal();
+            }
           }}
-        />
+        ><>
+          <Text style={styles.buttonContainerText}>Add friend</Text>
+          <Icon
+            type="ionicon"
+            name="ios-arrow-round-forward" 
+            iconStyle={{color: '#FFF'}}
+            size={30}
+          /></>
+        </TouchableHighlight>
       </View>
     </View>
   );
@@ -45,17 +69,37 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   formContainer: {
-    margin: 20,
-    marginTop: 50,
-    flexDirection: "row",
-    alignSelf: 'flex-end'
+    margin: 50,
+    flexDirection: "column",
+  },
+  modalHeader: {
+    marginTop: 40,
+    marginLeft: 50,
+    marginRight: 50,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  modalHeaderText: {
+    fontSize: 30
   },
   txtInput: {
-    flex: 1,
-    borderWidth: 2,
     fontSize: 20,
-    margin: 5,
     borderRadius: 5,
-    padding: 5
+    padding: 15,
+    backgroundColor: '#C9E3EB',
+    marginBottom: 20
   },
+  buttonContainer: {
+    borderRadius: 5,
+    padding: 15,
+    backgroundColor: '#E47E6D',
+    marginBottom: 20,
+    elevation: 2,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  buttonContainerText: {    
+    fontSize: 20,
+    color: '#FFF'
+  }
 });
