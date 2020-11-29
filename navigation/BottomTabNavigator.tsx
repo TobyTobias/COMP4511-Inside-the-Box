@@ -7,7 +7,7 @@ import { View, Image } from "react-native";
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import FriendsScreen from '../screens/FriendsScreen';
-import FriendDetails from '../components/FriendDetails';
+import FriendDetails from '../screens/FriendDetails';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import TabThreeScreen from '../screens/TabThreeScreen';
 import TabFourScreen from '../screens/TabThreeScreen';

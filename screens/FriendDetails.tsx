@@ -6,7 +6,7 @@ import {
   StyleSheet,
   TouchableHighlight
 } from "react-native";
-import { BodyText } from './StyledText';
+import { BodyText } from '../components/StyledText';
 
 export default function FriendDetail({ route }) {
   const { friend: friend } = route.params;
