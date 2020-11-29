@@ -44,9 +44,11 @@ export default function FriendsScreen({navigation}) {
   }
 
   const renderNoStateMessage = () => {
-    <View>
-      <Text>You have no employers in your favorite list.</Text>
-    </View>
+    return(
+      <View style={styles.emptyFriendContainer}>
+        <HeadingText style={{textAlign: 'center'}}>Add some friends to your list!</HeadingText>
+      </View>
+    );
   }
 
   const hideModal = () => {
@@ -60,6 +62,7 @@ export default function FriendsScreen({navigation}) {
         <FlatList
           style={[styles.list]}
           data={friends}
+          ListEmptyComponent={renderNoStateMessage}
           renderItem={({ item }) => {
             console.log("item: " + JSON.stringify(item));
             return (
@@ -129,6 +132,14 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     justifyContent: 'center',
     flexDirection: 'row'
+  },
+  emptyFriendContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 250,
+    marginLeft: 25,
+    marginRight: 25
   },
   list: {
     flex: 1,
