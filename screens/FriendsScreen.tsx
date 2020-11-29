@@ -3,7 +3,6 @@ import { useRef, useState } from 'react';
 
 import { StyleSheet, FlatList, TouchableHighlight, Alert, Modal } from 'react-native';
 import { Icon } from 'react-native-elements';
-import Swipout from 'react-native';
 import Swipable from 'react-native-gesture-handler/Swipeable';
 
 import { useFriends } from "../hooks/hooks";
@@ -11,6 +10,7 @@ import { useFriends } from "../hooks/hooks";
 import FriendForm from "../components/FriendForm";
 import FriendTile from '../components/FriendTile';
 import { Text, View } from '../components/Themed';
+import { BodyText, HeadingText } from '../components/StyledText';
 
 export default function FriendsScreen({navigation}) {
   const { friends, addFriend, removeFriend } = useFriends();
@@ -22,7 +22,7 @@ export default function FriendsScreen({navigation}) {
   const RightAction = () => {
     return(
       <View style={styles.rightAction}>
-        <Text>Remove</Text>
+        <BodyText>Remove</BodyText>
       </View>
     )
   };

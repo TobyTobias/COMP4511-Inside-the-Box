@@ -6,12 +6,13 @@ import {
   StyleSheet,
   TouchableHighlight
 } from "react-native";
+import { BodyText } from './StyledText';
 
 export default function FriendDetail({ route }) {
   const { friend: friend } = route.params;
   return (
     <View style={styles.container}>
-      <Text>friend: {JSON.stringify(friend)}</Text>
+      <BodyText>friend: {JSON.stringify(friend)}</BodyText>
     </View>
   );
 }

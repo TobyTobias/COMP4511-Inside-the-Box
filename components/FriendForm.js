@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import { Icon } from 'react-native-elements';
 import PrimaryButton from "./ui/PrimaryButton";
+import { BodyText } from './StyledText';
 
 export default function FriendForm({ onNewFriend = f => f, onCloseModal = f => f }) {
   const [inputValue, setValue] = useState("");
@@ -26,7 +27,7 @@ export default function FriendForm({ onNewFriend = f => f, onCloseModal = f => f
   return (
     <View style={styles.container}>
     <View style={styles.modalHeader}>
-      <Text style={styles.modalHeaderText}>Add Friend</Text>
+      <BodyText style={styles.modalHeaderText}>Add Friend</BodyText>
       <Icon
         type="ionicon"
         name="ios-close" 
@@ -38,7 +39,7 @@ export default function FriendForm({ onNewFriend = f => f, onCloseModal = f => f
       />
     </View>
       <View style={styles.formContainer}>
-        <Text style={styles.txtLabel}>First name:</Text>
+        <BodyText style={styles.txtLabel}>First name:</BodyText>
         <TextInput
           ref={input}
           style={styles.txtInput}

@@ -6,6 +6,7 @@ import {
   StyleSheet,
   TouchableHighlight
 } from "react-native";
+import { BodyText } from './StyledText';
 
 export default function FriendTile({
   friend,
@@ -23,9 +24,9 @@ export default function FriendTile({
           source={require('../assets/images/icon.png')}
         />
         <View style={styles.textContainer}>
-          <Text style={styles.buttonText}>
+          <BodyText style={styles.buttonText}>
             {friend.firstName} {friend.lastName}
-          </Text>
+          </BodyText>
         </View>
       </View>
     </TouchableHighlight>
