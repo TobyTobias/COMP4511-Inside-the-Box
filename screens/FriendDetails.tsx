@@ -1,17 +1,23 @@
 import React from "react";
-import Color from "color";
 import {
   Text,
   View,
   StyleSheet,
-  TouchableHighlight
 } from "react-native";
-import { BodyText } from '../components/StyledText';
+import { HeadingText, BodyText } from '../components/StyledText';
+import NavBar from '../components/NavBar';
 
-export default function FriendDetail({ route }) {
+export default function FriendDetail({ navigation, route }) {
   const { friend: friend } = route.params;
+  
+  const closeWindow = () => {
+    console.log("CLOSE WINDOW");
+    navigation.goBack(null);
+  };
+
   return (
     <View style={styles.container}>
+      <NavBar navTitle={friend.firstName} onBack={closeWindow} />
       <BodyText>friend: {JSON.stringify(friend)}</BodyText>
     </View>
   );
@@ -19,9 +25,10 @@ export default function FriendDetail({ route }) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    top: 25,
     display: "flex",
-    alignItems: "center",
-    justifyContent: "center"
+    flex: 1,
+    alignItems: "flex-start",
+    flexDirection: 'column'
   }
 });
