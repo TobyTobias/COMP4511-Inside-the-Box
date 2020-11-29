@@ -4,24 +4,24 @@ import {
   View,
 } from "react-native";
 import { Icon } from 'react-native-elements';
-import { BodyText } from './StyledText';
+import { HeadingText } from './StyledText';
 
 export default function NavBar({ navTitle = "", onBack = f => f }) {
   return (
     <View style={styles.containerOuter}>
-        <View style={styles.containerInner}>
-            <View style={styles.navBarHeader}>
+        <View style={styles.navBarHeader}>
+            <View style={styles.navBarHeaderIcon}>
                 <Icon
                     type="ionicon"
-                    name="ios-arrow-back" 
+                    name="ios-arrow-back"
+                    size={34}
                     iconStyle={{color: '#000'}}
-                    size={38}
                     onPress={() =>{
                         onBack();
                     }}
                 />
-                <BodyText style={styles.navBarHeaderText}>{navTitle}</BodyText>
             </View>
+            <HeadingText style={styles.navBarHeaderText}>{navTitle}</HeadingText>
         </View>
     </View>
   );
@@ -29,15 +29,11 @@ export default function NavBar({ navTitle = "", onBack = f => f }) {
 
 const styles = StyleSheet.create({
     containerOuter: {
-        flexDirection: 'column',
-        width: '100%',
-    },
-    containerInner: {
         flexDirection: 'row',
-        borderBottomColor: '#000',
-        borderBottomWidth: 1,
         marginLeft: 20,
         marginRight: 20,
+        borderBottomColor: '#000',
+        borderBottomWidth: 1,
     },
     navBarHeader: {
         paddingLeft: 20,
@@ -46,8 +42,11 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
     },
+    navBarHeaderIcon: {
+        alignSelf: 'center'
+    },
     navBarHeaderText: {
-        marginLeft: 20,
+        marginLeft: 40,
         marginRight: 20,
     },
 });
