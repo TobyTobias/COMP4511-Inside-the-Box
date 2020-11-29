@@ -7,10 +7,22 @@ import {
   TouchableHighlight
 } from "react-native";
 import { Icon } from 'react-native-elements';
+import PrimaryButton from "./ui/PrimaryButton";
 
 export default function FriendForm({ onNewFriend = f => f, onCloseModal = f => f }) {
   const [inputValue, setValue] = useState("");
   const input = useRef();
+
+  const addFriend = () => {
+    console.log("ADD FRIEND");
+    if (inputValue.trim() != "") {
+      input.current.blur();
+      onNewFriend(inputValue);
+      setValue("");
+      onCloseModal();
+    }
+  };
+
   return (
     <View style={styles.container}>
     <View style={styles.modalHeader}>
@@ -19,13 +31,14 @@ export default function FriendForm({ onNewFriend = f => f, onCloseModal = f => f
         type="ionicon"
         name="ios-close" 
         iconStyle={{color: '#000'}}
-        size={40}
+        size={30}
         onPress={() =>{
           onCloseModal();
         }}
       />
     </View>
       <View style={styles.formContainer}>
+        <Text style={styles.txtLabel}>First name:</Text>
         <TextInput
           ref={input}
           style={styles.txtInput}
@@ -34,26 +47,8 @@ export default function FriendForm({ onNewFriend = f => f, onCloseModal = f => f
           autoCapitalize="none"
           placeholder="first name"
         />
-        <TouchableHighlight
-          underlayColor="#FFF"
-          style={styles.buttonContainer}
-          onPress={() => {
-            if (inputValue.trim() != "") {
-              input.current.blur();
-              onNewFriend(inputValue);
-              setValue("");
-              onCloseModal();
-            }
-          }}
-        ><>
-          <Text style={styles.buttonContainerText}>Add friend</Text>
-          <Icon
-            type="ionicon"
-            name="ios-arrow-round-forward" 
-            iconStyle={{color: '#FFF'}}
-            size={30}
-          /></>
-        </TouchableHighlight>
+
+        <PrimaryButton onButtonPress={addFriend} buttonText="Add friend" />
       </View>
     </View>
   );
@@ -62,44 +57,36 @@ export default function FriendForm({ onNewFriend = f => f, onCloseModal = f => f
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#FFFFFF",
-    borderTopLeftRadius: 50,
-    borderTopRightRadius: 50,
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
     elevation: 2,
     top: 50,
     flex: 1,
   },
   formContainer: {
-    margin: 50,
+    margin: 20,
     flexDirection: "column",
   },
   modalHeader: {
-    marginTop: 40,
-    marginLeft: 50,
-    marginRight: 50,
+    marginTop: 20,
+    marginLeft: 20,
+    marginRight: 20,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
   modalHeaderText: {
-    fontSize: 30
+    fontSize: 24
+  },
+  txtLabel: {
+    fontSize: 20,
+    marginBottom: 5,
   },
   txtInput: {
     fontSize: 20,
     borderRadius: 5,
-    padding: 15,
+    padding: 20,
     backgroundColor: '#C9E3EB',
-    marginBottom: 20
-  },
-  buttonContainer: {
-    borderRadius: 5,
-    padding: 15,
-    backgroundColor: '#E47E6D',
     marginBottom: 20,
-    elevation: 2,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  buttonContainerText: {    
     fontSize: 20,
-    color: '#FFF'
-  }
+  },
 });
