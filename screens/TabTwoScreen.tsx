@@ -6,7 +6,13 @@ import { Text, View } from '../components/Themed';
 
 import { SearchBar } from 'react-native-elements';
 
+
+import { BoxesContext } from '../context/BoxesContext';
+
 export default function TabTwoScreen() {
+  const { boxes } = React.useContext(BoxesContext);
+
+  console.log("boxes: " + JSON.stringify(boxes));
     
   // state = {
   //   search: '',
@@ -28,9 +34,9 @@ export default function TabTwoScreen() {
             // value={search}
           />
         </View>
-        <Text style={styles.title}>Boxes</Text>
-        <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-        <EditScreenInfo path="/screens/TabOneScreen.js" />
+        {boxes.map((box) => (
+          <Text key={box.id}>{box.name}</Text>
+        ))}
       </View>
   );
 }
