@@ -59,7 +59,7 @@ const setupDatabaseAsync = async () => {
   });
 };
 
-const setupUsersAsync = async () => {
+const setupBoxesAsync = async () => {
   return new Promise((resolve, _reject) => {
     db.transaction(
       (tx) => {
@@ -85,6 +85,6 @@ const setupUsersAsync = async () => {
 export const database = {
   getBoxes,
   setupDatabaseAsync,
-  setupUsersAsync,
+  setupBoxesAsync,
   dropDatabaseTablesAsync,
 };
