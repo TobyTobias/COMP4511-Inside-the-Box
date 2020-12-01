@@ -6,8 +6,17 @@ import { nanoid  } from "nanoid";
 
 import AsyncStorage from "@react-native-community/async-storage";
 
+export interface IFriend {
+  id: string,
+  first_name: string,
+  last_name: string,
+  email: string
+};
+
 export const useFriends = () => {
-  const [friends, setFriends] = useState([{id: 0, firstName: ""}]);
+  // https://www.carlrippon.com/typed-usestate-with-typescript/
+  // https://stackoverflow.com/questions/56918950/displaying-an-array-received-from-usestate-hook-with-typescript
+  const [friends, setFriends] = useState(<IFriend[] | []>([]));
   const loadFriends = async () => {
     const friendData = await AsyncStorage.getItem(
       "@FriendListStore:Friends"
@@ -32,8 +41,8 @@ export const useFriends = () => {
     );
   }, [friends]);
 
-  const addFriend = (firstName) => {
-    const newFriend = { id: nanoid(), firstName: firstName };
+  const addFriend = (first_name) => {
+    const newFriend = <IFriend>{ id: nanoid(), first_name: first_name };
     setFriends([newFriend, ...friends]);
   };
   
