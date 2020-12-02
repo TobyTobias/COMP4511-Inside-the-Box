@@ -4,7 +4,7 @@ import {
   View,
 } from "react-native";
 import { Icon } from 'react-native-elements';
-import { HeadingText } from './StyledText';
+import { HeadingText } from './ui/StyledText';
 
 export default function NavBar({ navTitle = "", onBack = f => f }) {
   return (

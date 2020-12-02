@@ -9,7 +9,7 @@ import { SearchBar } from 'react-native-elements';
 
 import { BoxesContext } from '../context/BoxesContext';
 import BoxTile from '../components/BoxTile';
-import { BodyText, HeadingText } from '../components/StyledText';
+import { BodyText, HeadingText } from '../components/ui/StyledText';
 import Swipable from 'react-native-gesture-handler/Swipeable';
 
 export default function TabTwoScreen() {

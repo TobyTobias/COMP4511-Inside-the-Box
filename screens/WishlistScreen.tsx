@@ -9,7 +9,7 @@ import { useBoxes } from "../hooks/hooks";
 
 import FriendTile from '../components/FriendTile';
 import { Text, View } from '../components/Themed';
-import { BodyText, HeadingText } from '../components/StyledText';
+import { BodyText, HeadingText } from '../components/ui/StyledText';
 
 export default function WishlistScreen({navigation}) {
   const { boxes, removeBox } = useBoxes();

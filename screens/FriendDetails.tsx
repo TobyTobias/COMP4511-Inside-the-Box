@@ -4,7 +4,7 @@ import {
   View,
   StyleSheet,
 } from "react-native";
-import { HeadingText, BodyText } from '../components/StyledText';
+import { HeadingText, BodyText } from '../components/ui/StyledText';
 import NavBar from '../components/NavBar';
 
 export default function FriendDetail({ navigation, route }) {

@@ -10,7 +10,7 @@ import { useFriends } from "../hooks/hooks";
 import FriendForm from "../components/FriendForm";
 import FriendTile from '../components/FriendTile';
 import { Text, View } from '../components/Themed';
-import { BodyText, HeadingText } from '../components/StyledText';
+import { BodyText, HeadingText } from '../components/ui/StyledText';
 
 export default function FriendsScreen({navigation}) {
   const { friends, addFriend, removeFriend } = useFriends();
@@ -99,7 +99,8 @@ export default function FriendsScreen({navigation}) {
       </View>
 
       {/* https://reactnative.dev/docs/modal */}
-      <Modal
+      {/* This doesn't want to work on iOS but the idea is to have a mask over the main screen that the modal sits on top of, it's separate so it doesn't slide with the actual modal */}
+      {/* <Modal
         animationType="fade"
         transparent={true}
         visible={modalVisible}
@@ -108,7 +109,7 @@ export default function FriendsScreen({navigation}) {
         }}
       >
         <View style={styles.modalBackground} />
-      </Modal>
+      </Modal> */}
       <Modal
         animationType="slide"
         transparent={true}
@@ -158,11 +159,9 @@ const styles = StyleSheet.create({
     right: 25,
   },
   modalBackground: {
-    backgroundColor: 'rgba(52, 52, 52, 0.8)',
     flex: 1,
   },
   modalContainer: {
-    backgroundColor: 'rgba(52, 52, 52, 0)',
     flex: 1,
     flexDirection: 'column'
   },

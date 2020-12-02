@@ -1,14 +1,15 @@
 import React, { useState, useRef } from "react";
 import {
   StyleSheet,
-  View,
-  Text,
   TextInput,
   TouchableHighlight
 } from "react-native";
-import { Icon } from 'react-native-elements';
+
+import { View, Icon } from './Themed';
 import PrimaryButton from "./ui/PrimaryButton";
-import { BodyText } from './StyledText';
+import { BodyText } from './ui/StyledText';
+import { SecondaryView } from './ui/StyledView';
+
 
 export default function FriendForm({ onNewFriend = f => f, onCloseModal = f => f }) {
   const [inputValue, setValue] = useState("");
@@ -25,19 +26,20 @@ export default function FriendForm({ onNewFriend = f => f, onCloseModal = f => f
   };
 
   return (
-    <View style={styles.container}>
-    <View style={styles.modalHeader}>
-      <BodyText style={styles.modalHeaderText}>Add Friend</BodyText>
-      <Icon
-        type="ionicon"
-        name="ios-close" 
-        iconStyle={{color: '#000'}}
-        size={30}
-        onPress={() =>{
-          onCloseModal();
-        }}
-      />
-    </View>
+    <SecondaryView style={styles.container}
+    lightColor="rgba(245,245,245,1)"
+    darkColor="rgba(30,30,30,1)">
+      <View style={styles.modalHeader}>
+        <BodyText style={styles.modalHeaderText}>Add Friend</BodyText>
+        <Icon
+          type="ionicon"
+          name="ios-close"
+          size={30}
+          onPress={() =>{
+            onCloseModal();
+          }}
+        />
+      </View>
       <View style={styles.formContainer}>
         <BodyText style={styles.txtLabel}>First name:</BodyText>
         <TextInput
@@ -51,13 +53,12 @@ export default function FriendForm({ onNewFriend = f => f, onCloseModal = f => f
 
         <PrimaryButton onButtonPress={addFriend} buttonText="Add friend" />
       </View>
-    </View>
+    </SecondaryView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#FFFFFF",
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     elevation: 2,
@@ -65,10 +66,12 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   formContainer: {
+    backgroundColor: 'rgba(0,0,0,0)',
     margin: 20,
     flexDirection: "column",
   },
   modalHeader: {
+    backgroundColor: 'rgba(0,0,0,0)',
     marginTop: 20,
     marginLeft: 20,
     marginRight: 20,

@@ -6,7 +6,7 @@ import {
   StyleSheet,
   TouchableHighlight
 } from "react-native";
-import { BodyText } from './StyledText';
+import { BodyText } from './ui/StyledText';
 
 export default function BoxTile({
   box,

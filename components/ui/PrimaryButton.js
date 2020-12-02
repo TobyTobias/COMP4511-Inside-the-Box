@@ -7,7 +7,7 @@ import {
 } from "react-native";
 
 import { Icon } from 'react-native-elements';
-import { BodyText } from '../StyledText';
+import { BodyText } from './StyledText';
 
 export default function PrimaryButton({ onButtonPress = f => f, buttonText = ""}) {
   return (
