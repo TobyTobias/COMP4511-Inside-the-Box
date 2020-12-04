@@ -13,7 +13,7 @@ export default function PrimaryButton({ onButtonPress = f => f, buttonText = ""}
   return (
     <>
       <TouchableHighlight
-        underlayColor="#FFF"
+        underlayColor="#7560C780"
         style={styles.buttonContainer}
         onPress={() =>{
           console.log("PrimaryButton onPress");
@@ -41,6 +41,12 @@ const styles = StyleSheet.create({
       backgroundColor: '#7560C7',
       marginBottom: 20,
       elevation: 2,
+      shadowOpacity: 0.3,
+      shadowRadius: 3,
+      shadowOffset: {
+          height: 0,
+          width: 0
+      },
       flexDirection: 'row',
       justifyContent: 'space-between',
     },

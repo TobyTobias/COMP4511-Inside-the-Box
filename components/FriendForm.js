@@ -62,6 +62,12 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     elevation: 2,
+    shadowOpacity: 0.3,
+    shadowRadius: 3,
+    shadowOffset: {
+        height: 0,
+        width: 0
+    },
     top: 50,
     flex: 1,
   },

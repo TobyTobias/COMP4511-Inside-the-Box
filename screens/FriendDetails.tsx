@@ -1,11 +1,11 @@
 import React from "react";
 import {
-  Text,
-  View,
   StyleSheet,
 } from "react-native";
-import { HeadingText, BodyText } from '../components/ui/StyledText';
 import NavBar from '../components/NavBar';
+
+import { Text, View } from '../components/Themed';
+import { BodyText, HeadingText } from '../components/ui/StyledText';
 
 export default function FriendDetail({ navigation, route }) {
   const { friend: friend } = route.params;
@@ -17,7 +17,7 @@ export default function FriendDetail({ navigation, route }) {
 
   return (
     <View style={styles.container}>
-      <NavBar navTitle={friend.firstName} onBack={closeWindow} />
+      <NavBar navTitle={friend.first_name} onBack={closeWindow} />
       <BodyText>friend: {JSON.stringify(friend)}</BodyText>
     </View>
   );

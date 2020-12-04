@@ -15,8 +15,9 @@ export default function FriendTile({
   return (
     <TouchableHighlight
       style={styles.button}
+      activeOpacity={0.6}
+      underlayColor="rgba(255,255,255,0.9)"
       onPress={() => {onPress(friend)}}
-      underlayColor="#E47E6D"
     >
       <View style={styles.row}>
         <Image
@@ -25,7 +26,7 @@ export default function FriendTile({
         />
         <View style={styles.textContainer}>
           <BodyText style={styles.buttonText}>
-            {friend.firstName} {friend.lastName}
+            {friend.first_name} {friend.last_name}
           </BodyText>
         </View>
       </View>
@@ -37,10 +38,16 @@ const styles = StyleSheet.create({
   button: {
     margin: 10,
     padding: 10,
-    borderWidth: 2,
     borderRadius: 10,
     // alignSelf: "stretch",
     backgroundColor: "rgba(255, 255, 255, 1)",
+    elevation: 4,
+    shadowOpacity: 0.3,
+    shadowRadius: 3,
+    shadowOffset: {
+        height: 0,
+        width: 0
+    },
   },
   textContainer: {
     margin: 20,
@@ -49,7 +56,8 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 30,
-    textAlign: "center"
+    textAlign: "center",
+    color: "#000"
   },
   row: {
     flexDirection: "row",

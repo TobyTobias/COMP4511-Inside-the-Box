@@ -89,8 +89,8 @@ export default function FriendsScreen({navigation}) {
             reverse
             type="ionicon"
             name="ios-person-add" 
-            color='#C9E3EB'
-            iconStyle={{color: '#000'}}
+            color='#7560C7'
+            iconStyle={{color: '#fff'}}
             onPress={() =>{
               setModalVisible(true);
             }}
