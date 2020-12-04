@@ -5,7 +5,7 @@ export type RootStackParamList = {
 
 export type BottomTabParamList = {
   FriendsScreen: undefined;
-  TabTwo: undefined;
+  BoxSearchScreen: undefined;
   TabThree: undefined;
   TabFour: undefined;
   TabFive: undefined;
@@ -20,8 +20,8 @@ export type FriendDetailParamList = {
   FriendDetails: undefined;
 };
 
-export type TabTwoParamList = {
-  TabTwoScreen: undefined;
+export type BoxSearchScreenParamList = {
+  BoxSearchScreen: undefined;
 };
 
 export type TabThreeParamList = {

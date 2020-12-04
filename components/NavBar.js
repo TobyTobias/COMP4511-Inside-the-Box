@@ -1,10 +1,10 @@
 import React from "react";
 import {
   StyleSheet,
-  View,
 } from "react-native";
-import { Icon } from 'react-native-elements';
+import { View, Icon } from './Themed';
 import { HeadingText } from './ui/StyledText';
+
 
 export default function NavBar({ navTitle = "", onBack = f => f }) {
   return (
@@ -15,7 +15,7 @@ export default function NavBar({ navTitle = "", onBack = f => f }) {
                     type="ionicon"
                     name="ios-arrow-back"
                     size={34}
-                    iconStyle={{color: '#000'}}
+                    padding={20}
                     onPress={() =>{
                         onBack();
                     }}
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         marginLeft: 20,
         marginRight: 20,
-        borderBottomColor: '#000',
+        borderBottomColor: '#CCC',
         borderBottomWidth: 1,
     },
     navBarHeader: {

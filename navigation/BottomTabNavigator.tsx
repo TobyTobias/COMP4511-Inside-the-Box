@@ -8,10 +8,10 @@ import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import FriendsScreen from '../screens/FriendsScreen';
 import FriendDetails from '../screens/FriendDetails';
-import TabTwoScreen from '../screens/TabTwoScreen';
-import TabThreeScreen from '../screens/TabThreeScreen';
-import TabFourScreen from '../screens/TabThreeScreen';
-import TabFiveScreen from '../screens/TabThreeScreen';
+import BoxSearchScreen from '../screens/BoxSearchScreen';
+import TabThreeScreen from '../screens/ProfileSettingsScreen';
+import TabFourScreen from '../screens/ProfileSettingsScreen';
+import TabFiveScreen from '../screens/ProfileSettingsScreen';
 import { BottomTabParamList, FriendsScreenParamList, TabTwoParamList, TabThreeParamList, TabFourParamList, TabFiveParamList } from '../types';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
@@ -32,22 +32,22 @@ export default function BottomTabNavigator({navigator}) {
         }}
       />
       <BottomTab.Screen
-        name="TabTwo"
-        component={TabThreeNavigator}
+        name="BoxSearchScreen"
+        component={BoxSearchScreenNavigator}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="ios-search" color={color} />,
         }}
       />
       <BottomTab.Screen
         name="TabThree"
-        component={TabTwoNavigator}
+        component={BoxSearchScreenNavigator}
         options={{
           tabBarIcon: ({ color, focused }) => <TabBarImage color={color} focused={focused} />,
         }}
       />
       <BottomTab.Screen
         name="TabFour"
-        component={TabFourNavigator}
+        component={BoxSearchScreenNavigator}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="ios-heart" color={color} />,
         }}
@@ -70,7 +70,21 @@ function TabBarIcon(props: { name: string; color: string }) {
 }
 
 function TabBarImage(props: { color: string, focused: boolean }) {
-  return <View style={[{backgroundColor: props.focused ? '#C9E3EB' : '#FFF'}, { borderRadius: 30, elevation: 5}]}><Image style={{ width: 40, height: 40, margin: 10 }} source={require('../assets/images/logo.png')} {...props} /></View>;
+  const colorScheme = useColorScheme();
+  return <View style={[{
+      backgroundColor: props.focused ? '#7560C7' : Colors[colorScheme].background
+    }, {
+      borderColor: '#ccc',
+      borderRadius: 30, 
+      elevation: 5,
+      shadowOpacity: 0.3,
+      shadowRadius: 2,
+      shadowOffset: {
+        height: 1,
+        width: 0
+      }}]} {...props}>
+      <Image style={{ width: 40, height: 40, margin: 10 }} source={require('../assets/images/logo.png')} />
+    </View>;
 }
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
@@ -94,16 +108,16 @@ function FriendsScreenNavigator({navigation}) {
   );
 }
 
-const TabTwoStack = createStackNavigator<TabTwoParamList>();
+const BoxSearchScreenStack = createStackNavigator<BoxSearchScreenParamList>();
 
-function TabTwoNavigator() {
+function BoxSearchScreenNavigator() {
   return (
-    <TabTwoStack.Navigator headerMode="none">
-      <TabTwoStack.Screen
-        name="TabTwoScreen"
-        component={TabTwoScreen}
+    <BoxSearchScreenStack.Navigator headerMode="none">
+      <BoxSearchScreenStack.Screen
+        name="BoxSearchScreen"
+        component={BoxSearchScreen}
       />
-    </TabTwoStack.Navigator>
+    </BoxSearchScreenStack.Navigator>
   );
 }
 

@@ -12,7 +12,7 @@ import BoxTile from '../components/BoxTile';
 import { BodyText, HeadingText } from '../components/ui/StyledText';
 import Swipable from 'react-native-gesture-handler/Swipeable';
 
-export default function TabTwoScreen() {
+export default function BoxSearchScreen() {
   const { boxes } = React.useContext(BoxesContext);
   const swipeableRef = React.useRef(null);  
   
@@ -30,7 +30,7 @@ export default function TabTwoScreen() {
   const renderNoStateMessage = () => {
     return(
       <View style={styles.emptyBoxContainer}>
-        <HeadingText style={{textAlign: 'center'}}>Add some friends to your list!</HeadingText>
+        <HeadingText style={{textAlign: 'center'}}>Loading boxes...</HeadingText>
       </View>
     );
   }
@@ -76,6 +76,7 @@ export default function TabTwoScreen() {
           <FlatList
             style={[styles.list]}
             data={boxes}
+            ListEmptyComponent={renderNoStateMessage}
             renderItem={({ item }) => {
               console.log("item: " + JSON.stringify(item));
               return (
@@ -124,6 +125,7 @@ const styles = StyleSheet.create({
   },
   list: {
     flex: 1,
+    paddingTop: 5,
   },
   rightAction: {
     margin: 20,
