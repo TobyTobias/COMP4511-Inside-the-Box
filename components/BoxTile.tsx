@@ -38,7 +38,7 @@ export default function BoxTile({
           </View>
           <View style={styles.textFooter}>
             <Text style={styles.boxPrice}>
-              ${box.price}
+              ${box.price.toString()}
             </Text>
             <Icon
               color="#000"
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderTopLeftRadius: 10,
     borderBottomLeftRadius: 10,
-  },
+  }, 
   boxPicture: {
     width: 100,
     height: 100,
@@ -153,19 +153,19 @@ const styles = StyleSheet.create({
     right: 0,
     height: '100%',
     // flex: 1,
-    padding: 5,
+    padding: 10,
     flexDirection: "column",
     alignItems: 'flex-start',
   },
   descriptionContainer: {
     flexDirection: "column",
     alignItems: 'flex-start',
-    flex: 1,
-    fontSize: 14
+    flex: 1
   },
   description: {
     flex: 1, 
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+    fontSize: 18
   },
   textFooter: {
     flexDirection: "row", 
