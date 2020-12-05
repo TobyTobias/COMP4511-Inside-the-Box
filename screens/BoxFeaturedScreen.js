@@ -4,7 +4,7 @@ import { Alert, FlatList, StyleSheet } from 'react-native';
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 
-import { Searchbar } from 'react-native-paper';
+import { SearchBar } from 'react-native-elements';
 
 
 import { BoxesContext } from '../context/BoxesContext';
@@ -14,8 +14,6 @@ import Swipable from 'react-native-gesture-handler/Swipeable';
 
 export default function BoxSearchScreen() {
   const { boxes } = React.useContext(BoxesContext);
-  const [localBoxes, setBoxes] = React.useState(boxes);
-
   const swipeableRef = React.useRef(null);  
   
   const LeftAction = () => {
@@ -54,36 +52,15 @@ export default function BoxSearchScreen() {
     );
   }
 
-  const [searchQuery, setSearchQuery] = React.useState('');
-
-  const onChangeSearch = (query)  => {
-    console.log('search for: ' + query);
-    setSearchQuery(query);
-    if (query != "") {
-      setBoxes(localBoxes.filter(item => {
-        return item.name?.indexOf(query) > -1;    
-      }));
-    } else {
-      setBoxes(boxes);
-    }
-  };
-
   return (
       <View style={styles.container}>
         <View style={styles.headingContainer}>
-          <HeadingText>Search</HeadingText>
+          <HeadingText>Featured</HeadingText>
         </View>
-        <View style={styles.searchBarContainer}>
-          <Searchbar
-            placeholder="Search"
-            onChangeText={onChangeSearch}
-            value={searchQuery}
-          />
-        </View>
-      <View style={styles.boxesContainer}>
+        <View style={styles.boxesContainer}>
           <FlatList
             style={[styles.list]}
-            data={localBoxes}
+            data={boxes}
             ListEmptyComponent={renderNoStateMessage}
             renderItem={({ item }) => {
               console.log("item: " + JSON.stringify(item));
@@ -116,12 +93,11 @@ const styles = StyleSheet.create({
   },  
   headingContainer: {
     paddingTop: 30,
-    paddingLeft: 15,
+    paddingLeft: 15
   },
   searchBarContainer: {
-    paddingBottom: 10,
-    paddingLeft: 10,
-    paddingRight: 10,
+    top: 25,
+    height: 90,
     alignSelf: 'stretch',
   },
   searchBar: {

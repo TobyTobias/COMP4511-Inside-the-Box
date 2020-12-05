@@ -4,7 +4,7 @@ import { Alert, FlatList, StyleSheet } from 'react-native';
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 
-import { Searchbar } from 'react-native-paper';
+import { SearchBar } from 'react-native-elements';
 
 
 import { BoxesContext } from '../context/BoxesContext';
@@ -14,14 +14,12 @@ import Swipable from 'react-native-gesture-handler/Swipeable';
 
 export default function BoxSearchScreen() {
   const { boxes } = React.useContext(BoxesContext);
-  const [localBoxes, setBoxes] = React.useState(boxes);
-
   const swipeableRef = React.useRef(null);  
   
-  const LeftAction = () => {
+  const RightAction = () => {
     return(
       <View style={styles.rightAction}>
-        <BodyText>+ Wishlist</BodyText>
+        <BodyText>- Wishlist</BodyText>
       </View>
     )
   };
@@ -41,7 +39,7 @@ export default function BoxSearchScreen() {
   function confirmWishlistBox(item) {
     Alert.alert(
       "",
-      "'" + item.name + "' added to your wishlist",
+      "'" + item.name + "' removed from your wishlist",
       [
         {
           text: "Cancel",
@@ -54,77 +52,54 @@ export default function BoxSearchScreen() {
     );
   }
 
-  const [searchQuery, setSearchQuery] = React.useState('');
-
-  const onChangeSearch = (query)  => {
-    console.log('search for: ' + query);
-    setSearchQuery(query);
-    if (query != "") {
-      setBoxes(localBoxes.filter(item => {
-        return item.name?.indexOf(query) > -1;    
-      }));
-    } else {
-      setBoxes(boxes);
-    }
-  };
-
   return (
-      <View style={styles.container}>
+      <View style={styles.containerOuter}>
         <View style={styles.headingContainer}>
-          <HeadingText>Search</HeadingText>
+          <HeadingText>Wishlist</HeadingText>
         </View>
-        <View style={styles.searchBarContainer}>
-          <Searchbar
-            placeholder="Search"
-            onChangeText={onChangeSearch}
-            value={searchQuery}
-          />
-        </View>
-      <View style={styles.boxesContainer}>
-          <FlatList
-            style={[styles.list]}
-            data={localBoxes}
-            ListEmptyComponent={renderNoStateMessage}
-            renderItem={({ item }) => {
-              console.log("item: " + JSON.stringify(item));
-              return (
-                <Swipable renderLeftActions={LeftAction} onSwipeableLeftOpen={() => confirmWishlistBox(item)} ref={swipeableRef}>
-                  <BoxTile
-                    key={item.id}
-                    box={item}
-                    // onPress={() =>                    
-                    //   navigation.navigate("FriendDetails", {
-                    //     friend: item
-                    //   })
-                    // }
-                  />
-                </Swipable>
-              );
-            }}
-          />
+        <View style={styles.containerInner}>
+          <View style={styles.boxesContainer}>
+            <FlatList
+              style={[styles.list]}
+              data={boxes}
+              ListEmptyComponent={renderNoStateMessage}
+              renderItem={({ item }) => {
+                console.log("item: " + JSON.stringify(item));
+                return (
+                  <Swipable renderRightActions={RightAction} onSwipeableRightOpen={() => confirmWishlistBox(item)} ref={swipeableRef}>
+                    <BoxTile
+                      key={item.id}
+                      box={item}
+                      // onPress={() =>                    
+                      //   navigation.navigate("FriendDetails", {
+                      //     friend: item
+                      //   })
+                      // }
+                    />
+                  </Swipable>
+                );
+              }}
+            />
+          </View>
         </View>
       </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  containerOuter: {
+    flex: 1,
+    flexDirection: 'column',
+  },
+  containerInner: {
     flex: 1,
     alignItems: 'flex-start',
     justifyContent: 'center',
-    flexDirection: 'column'
-  },  
+    flexDirection: 'row',
+  },
   headingContainer: {
     paddingTop: 30,
     paddingLeft: 15,
-  },
-  searchBarContainer: {
-    paddingBottom: 10,
-    paddingLeft: 10,
-    paddingRight: 10,
-    alignSelf: 'stretch',
-  },
-  searchBar: {
   },
   boxesContainer: {
     flex: 1,

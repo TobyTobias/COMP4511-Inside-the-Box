@@ -58,7 +58,10 @@ export default function FriendsScreen({navigation}) {
 
   return (
     <>
-      <View style={styles.friendContainer}>
+      <View style={styles.container}>
+        <View style={styles.headingContainer}>
+          <HeadingText>Friends</HeadingText>
+        </View>
         <FlatList
           style={[styles.list]}
           data={friends}
@@ -127,12 +130,13 @@ export default function FriendsScreen({navigation}) {
 }
 
 const styles = StyleSheet.create({
-  friendContainer: {
-    top: 25,
+  container: {
     flex: 1,
-    alignItems: 'flex-start',
-    justifyContent: 'center',
-    flexDirection: 'row'
+    flexDirection: 'column',
+  },
+  headingContainer: {
+    paddingTop: 30,
+    paddingLeft: 15
   },
   emptyFriendContainer: {
     flex: 1,
@@ -144,6 +148,7 @@ const styles = StyleSheet.create({
   },
   list: {
     flex: 1,
+    paddingTop: 5,
   },
   rightAction: {
     margin: 20,

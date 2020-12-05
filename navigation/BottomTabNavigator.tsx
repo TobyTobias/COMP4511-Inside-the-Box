@@ -9,10 +9,10 @@ import useColorScheme from '../hooks/useColorScheme';
 import FriendsScreen from '../screens/FriendsScreen';
 import FriendDetails from '../screens/FriendDetails';
 import BoxSearchScreen from '../screens/BoxSearchScreen';
-import TabThreeScreen from '../screens/ProfileSettingsScreen';
-import TabFourScreen from '../screens/ProfileSettingsScreen';
+import BoxFeaturedScreen from '../screens/BoxFeaturedScreen';
+import BoxWishlistScreen from '../screens/BoxWishlistScreen';
 import TabFiveScreen from '../screens/ProfileSettingsScreen';
-import { BottomTabParamList, FriendsScreenParamList, TabTwoParamList, TabThreeParamList, TabFourParamList, TabFiveParamList } from '../types';
+import { BottomTabParamList, FriendsScreenParamList, BoxSearchScreenParamList, BoxFeaturedScreenParamList, BoxWishlistParamList, TabFiveParamList } from '../types';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -21,7 +21,7 @@ export default function BottomTabNavigator({navigator}) {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabThree"
+      initialRouteName="BoxFeaturedScreen"
       tabBarOptions={{ activeTintColor: Colors[colorScheme].tint, showLabel: false}}
       >
       <BottomTab.Screen
@@ -39,15 +39,15 @@ export default function BottomTabNavigator({navigator}) {
         }}
       />
       <BottomTab.Screen
-        name="TabThree"
-        component={BoxSearchScreenNavigator}
+        name="BoxFeaturedScreen"
+        component={BoxFeaturedScreenNavigator}
         options={{
           tabBarIcon: ({ color, focused }) => <TabBarImage color={color} focused={focused} />,
         }}
       />
       <BottomTab.Screen
-        name="TabFour"
-        component={BoxSearchScreenNavigator}
+        name="BoxWishlistScreen"
+        component={BoxWishlistScreenNavigator}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="ios-heart" color={color} />,
         }}
@@ -121,31 +121,31 @@ function BoxSearchScreenNavigator() {
   );
 }
 
-const TabThreeStack = createStackNavigator<TabThreeParamList>();
+const BoxFeaturedScreenStack = createStackNavigator<BoxFeaturedScreenParamList>();
 
-function TabThreeNavigator() {
+function BoxFeaturedScreenNavigator() {
   return (
-    <TabThreeStack.Navigator headerMode="none">
-      <TabThreeStack.Screen
-        name="TabThreeScreen"
-        component={TabThreeScreen}
+    <BoxFeaturedScreenStack.Navigator headerMode="none">
+      <BoxFeaturedScreenStack.Screen
+        name="BoxFeaturedScreen"
+        component={BoxFeaturedScreen}
         options={{ headerTitle: 'Tab Three Title' }}
       />
-    </TabThreeStack.Navigator>
+    </BoxFeaturedScreenStack.Navigator>
   );
 }
 
-const TabFourStack = createStackNavigator<TabFourParamList>();
+const BoxWishlistScreenStack = createStackNavigator<BoxWishlistParamList>();
 
-function TabFourNavigator() {
+function BoxWishlistScreenNavigator() {
   return (
-    <TabFourStack.Navigator headerMode="none">
-      <TabFourStack.Screen
-        name="TabFourScreen"
-        component={TabFourScreen}
+    <BoxWishlistScreenStack.Navigator headerMode="none">
+      <BoxWishlistScreenStack.Screen
+        name="BoxWishlistScreen"
+        component={BoxWishlistScreen}
         options={{ headerTitle: 'Tab Four Title' }}
       />
-    </TabFourStack.Navigator>
+    </BoxWishlistScreenStack.Navigator>
   );
 }
 
