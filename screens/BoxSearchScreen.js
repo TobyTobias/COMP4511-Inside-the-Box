@@ -78,6 +78,7 @@ export default function BoxSearchScreen() {
             placeholder="Search"
             onChangeText={onChangeSearch}
             value={searchQuery}
+            style={{borderRadius: 10}}
           />
         </View>
       <View style={styles.boxesContainer}>
