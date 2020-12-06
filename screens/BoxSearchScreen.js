@@ -1,16 +1,12 @@
 import * as React from 'react';
 import { Alert, FlatList, StyleSheet } from 'react-native';
-
-import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
-
 import { Searchbar } from 'react-native-paper';
-
-
-import { BoxesContext } from '../context/BoxesContext';
 import BoxTile from '../components/BoxTile';
 import { BodyText, HeadingText } from '../components/ui/StyledText';
 import Swipable from 'react-native-gesture-handler/Swipeable';
+
+import { BoxesContext } from '../context/BoxesContext';
 
 export default function BoxSearchScreen({navigation}) {
   const { boxes } = React.useContext(BoxesContext);
@@ -26,18 +22,14 @@ export default function BoxSearchScreen({navigation}) {
     )
   };
 
-  console.log("boxes: " + JSON.stringify(boxes));
-  
-  
   const renderNoStateMessage = () => {
     return(
       <View style={styles.emptyBoxContainer}>
         <HeadingText style={{textAlign: 'center'}}>Loading boxes...</HeadingText>
       </View>
     );
-  }
+  };
 
-  
   function confirmWishlistBox(item) {
     Alert.alert(
       "",
@@ -52,7 +44,7 @@ export default function BoxSearchScreen({navigation}) {
       ],
       { cancelable: false }
     );
-  }
+  };
 
   const [searchQuery, setSearchQuery] = React.useState('');
 

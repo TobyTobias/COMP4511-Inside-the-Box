@@ -27,6 +27,7 @@ export type BoxSearchScreenParamList = {
 
 export type BoxFeaturedScreenParamList = {
   BoxFeaturedScreen: undefined;
+  BoxDetail: undefined;
 };
 
 export type BoxWishlistParamList = {

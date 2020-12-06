@@ -136,6 +136,11 @@ function BoxFeaturedScreenNavigator() {
         name="BoxFeaturedScreen"
         component={BoxFeaturedScreen}
         options={{ headerTitle: 'Tab Three Title' }}
+      />     
+      <BoxFeaturedScreenStack.Screen
+        name="BoxDetail"
+        component={BoxDetail}
+        options={{ headerTitle: 'Box Detail' }}
       />
     </BoxFeaturedScreenStack.Navigator>
   );

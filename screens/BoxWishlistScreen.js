@@ -1,12 +1,6 @@
 import * as React from 'react';
 import { Alert, FlatList, StyleSheet } from 'react-native';
-
-import EditScreenInfo from '../components/EditScreenInfo';
-import { Text, View } from '../components/Themed';
-
-import { SearchBar } from 'react-native-elements';
-
-
+import { View } from '../components/Themed';
 import { BoxesContext } from '../context/BoxesContext';
 import BoxTile from '../components/BoxTile';
 import { BodyText, HeadingText } from '../components/ui/StyledText';

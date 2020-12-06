@@ -10,15 +10,22 @@ export const BoxesContextProvider = props => {
   // Initial values are obtained from the props
   const {
     boxes: initialBoxes,
+    featuredBoxes: initialFeaturedBoxes,
     children
   } = props;
 
   // Use State to store the values
   const [boxes, setBoxes] = useState(initialBoxes);
+  const [featuredBoxes, setFeaturedBoxes] = useState(initialFeaturedBoxes);
 
   useEffect(() => {
     refreshBoxes();
   }, [] );
+
+  useEffect(() => {
+    refreshFeaturedBoxes();
+  }, [] );
+
 
   const addNewBox = name => {
     return database.insertBox(name, refreshBoxes);
@@ -29,9 +36,15 @@ export const BoxesContextProvider = props => {
     return database.getBoxes(setBoxes);
   };
 
+  const refreshFeaturedBoxes = () =>  {
+    console.log('refreshBoxes: ' + database.getFeaturedBoxes(setFeaturedBoxes));
+    return database.getFeaturedBoxes(setFeaturedBoxes);
+  };
+
   // Make the context object:
   const boxesContext = {
     boxes,
+    featuredBoxes,
     addNewBox
   };
 
