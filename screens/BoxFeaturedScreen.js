@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { Alert, FlatList, StyleSheet } from 'react-native';
+import React, { useState, useEffect } from "react";
+import { Alert, FlatList, StyleSheet, Modal } from 'react-native';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
@@ -12,47 +12,42 @@ import BoxTile from '../components/BoxTile';
 import { BodyText, HeadingText } from '../components/ui/StyledText';
 import Swipable from 'react-native-gesture-handler/Swipeable';
 
-export default function BoxSearchScreen() {
-  const { boxes } = React.useContext(BoxesContext);
-  const swipeableRef = React.useRef(null);  
+// this user retrieval should be done on index but couldn't figure out how to get it to work with ts
+import { useUser } from "../hooks/hooks";
+import UserRegistrationForm from "../components/UserRegistrationForm";
+import { ScrollView } from "react-native-gesture-handler";
+
+export default function BoxFeaturedScreen() {
+
+  const [modalVisible, setModalVisible] = useState(true);
+
+  const { registeredUsers } = useUser();
+  const [localUser, setUser] = React.useState(registeredUsers);
   
-  const LeftAction = () => {
-    return(
-      <View style={styles.rightAction}>
-        <BodyText>+ Wishlist</BodyText>
-      </View>
-    )
+  useEffect(() => {
+    console.log("localUser: " + JSON.stringify(localUser));
+    setModalVisible(registeredUsers.length == 0 ? true : false);
+  }, [localUser] );
+
+  const hideRegistrationModal = () => {
+    console.log("CLOSE MODAL");
+    setModalVisible(!modalVisible);
   };
-
-  console.log("boxes: " + JSON.stringify(boxes));
   
-  
-  const renderNoStateMessage = () => {
-    return(
-      <View style={styles.emptyBoxContainer}>
-        <HeadingText style={{textAlign: 'center'}}>Loading boxes...</HeadingText>
-      </View>
-    );
-  }
-
-  
-  function confirmWishlistBox(item) {
-    Alert.alert(
-      "",
-      "'" + item.name + "' added to your wishlist",
-      [
-        {
-          text: "Cancel",
-          onPress: () => swipeableRef.current.close(),
-          style: "cancel"
-        },
-        { text: "OK", onPress: () => {} }
-      ],
-      { cancelable: false }
-    );
-  }
-
   return (
+    <>
+      <Modal
+        animationType="slide"
+        transparent={false}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+        }}
+      >
+        <ScrollView style={styles.modalContainer}>
+        <UserRegistrationForm onCloseModal={hideRegistrationModal} />
+        </ScrollView>
+      </Modal>
       <View style={styles.container}>
         <View style={styles.headingContainer}>
           <HeadingText>Featured</HeadingText>
@@ -60,27 +55,26 @@ export default function BoxSearchScreen() {
         <View style={styles.boxesContainer}>
           <FlatList
             style={[styles.list]}
-            data={boxes}
-            ListEmptyComponent={renderNoStateMessage}
+            data={[]}
             renderItem={({ item }) => {
               console.log("item: " + JSON.stringify(item));
               return (
-                <Swipable renderLeftActions={LeftAction} onSwipeableLeftOpen={() => confirmWishlistBox(item)} ref={swipeableRef}>
-                  <BoxTile
-                    key={item.id}
-                    box={item}
-                    // onPress={() =>                    
-                    //   navigation.navigate("FriendDetails", {
-                    //     friend: item
-                    //   })
-                    // }
-                  />
-                </Swipable>
+                <BoxTile
+                  key={item.id}
+                  box={item}
+                  // onPress={() =>                    
+                  //   navigation.navigate("FriendDetails", {
+                  //     friend: item
+                  //   })
+                  // }
+                />
               );
             }}
           />
         </View>
       </View>
+      
+    </>
   );
 }
 
@@ -128,5 +122,13 @@ const styles = StyleSheet.create({
     marginTop: 250,
     marginLeft: 25,
     marginRight: 25
+  },
+  modalContainer: {
+    backgroundColor: 'rgba(52, 52, 52, 0)',
+    flex: 1,
+    flexDirection: 'column'
+  },
+  modalContainerInner: {
+    alignSelf: 'flex-end'
   }
 });
