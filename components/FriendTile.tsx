@@ -22,7 +22,7 @@ export default function FriendTile({
       <View style={styles.row}>
         <Image
           style={styles.profilePicture}
-          source={require('../assets/images/icon.png')}
+          source={require('../assets/images/friends/FriendAnubhavSaxena.jpg')}
         />
         <View style={styles.textContainer}>
           <BodyText style={styles.buttonText}>

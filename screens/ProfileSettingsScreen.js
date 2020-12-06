@@ -95,6 +95,9 @@ export default function ProfileSettingsScreen() {
 }
 
 const styles = StyleSheet.create({
+  emptyUserContainer: {
+    padding: 10
+  },
   container: {
     flex: 1,
     flexDirection: 'column',

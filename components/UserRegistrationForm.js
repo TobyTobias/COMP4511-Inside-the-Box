@@ -98,7 +98,7 @@ export default function UserRegistrationForm({ onCloseModal = f => f, onRegister
           placeholder="password"
         />
       </View>
-      <View style={{ marginLeft: 10, marginRight: 10, backgroundColor: 'rgba(0,0,0,0)' }}>
+      <View style={{ marginLeft: 20, marginRight: 20, backgroundColor: 'rgba(0,0,0,0)' }}>
         <PrimaryButton onButtonPress={_registerUser} buttonText="Register" />
       </View>
     </SecondaryView>

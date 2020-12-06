@@ -50,9 +50,10 @@ export default function FriendForm({ onNewFriend = f => f, onCloseModal = f => f
           autoCapitalize="none"
           placeholder="first name"
         />
-
       </View>
-      <PrimaryButton onButtonPress={addFriend} buttonText="Add friend" />
+      <View style={{paddingLeft: 20, paddingRight: 20 }}>
+        <PrimaryButton onButtonPress={addFriend} buttonText="Add friend" />
+      </View>
     </SecondaryView>
   );
 }

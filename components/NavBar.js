@@ -2,8 +2,9 @@ import React from "react";
 import {
   StyleSheet,
 } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 import { View, Icon } from './Themed';
-import { HeadingText } from './ui/StyledText';
+import { BodyText } from './ui/StyledText';
 
 
 export default function NavBar({ navTitle = "", onBack = f => f }) {
@@ -11,17 +12,15 @@ export default function NavBar({ navTitle = "", onBack = f => f }) {
     <View style={styles.containerOuter}>
         <View style={styles.navBarHeader}>
             <View style={styles.navBarHeaderIcon}>
-                <Icon
-                    type="ionicon"
-                    name="ios-arrow-back"
-                    size={34}
-                    padding={20}
-                    onPress={() =>{
-                        onBack();
-                    }}
-                />
+                <TouchableOpacity style={styles.iconContainer} onPress={() =>{onBack();}}>
+                    <Icon
+                        type="ionicon"
+                        name="ios-arrow-back"
+                        size={34}
+                    />
+                </TouchableOpacity>
             </View>
-            <HeadingText style={styles.navBarHeaderText}>{navTitle}</HeadingText>
+            <BodyText style={styles.navBarHeaderText}>{navTitle}</BodyText>
         </View>
     </View>
   );
@@ -32,21 +31,20 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         marginLeft: 20,
         marginRight: 20,
-        borderBottomColor: '#CCC',
-        borderBottomWidth: 1,
     },
     navBarHeader: {
-        paddingLeft: 20,
-        paddingTop: 20,
-        paddingBottom: 20,
         flex: 1,
         flexDirection: 'row',
+    },
+    iconContainer: {
+        padding: 10,
     },
     navBarHeaderIcon: {
         alignSelf: 'center'
     },
     navBarHeaderText: {
-        marginLeft: 40,
-        marginRight: 20,
+        paddingTop: 8,
+        marginLeft: 10,
+        marginRight: 40,
     },
 });
