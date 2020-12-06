@@ -9,6 +9,7 @@ import { useUser } from "../hooks/hooks";
 import UserRegistrationForm from "../components/UserRegistrationForm";
 import { ScrollView } from "react-native-gesture-handler";
 import PrimaryButton from '../components/ui/PrimaryButton';
+import SecondaryButton from '../components/ui/SecondaryButton';
 
 export default function ProfileSettingsScreen() {
   const { registeredUsers, registerUser, logoutUser } = useUser();
@@ -57,16 +58,21 @@ export default function ProfileSettingsScreen() {
                       <Text style={styles.buttonText}>
                         {item.first_name} {item.last_name}
                       </Text>
+                      <Text style={styles.buttonTextSecondary}>
+                        Edit profile
+                      </Text>
                     </View>
                   </View>
                 </TouchableHighlight>
-                <PrimaryButton onButtonPress={() => {logoutUser(item)}} buttonText="Wishlist" />
-                <PrimaryButton onButtonPress={() => {logoutUser(item)}} buttonText="Availability" />
-                <PrimaryButton onButtonPress={() => {logoutUser(item)}} buttonText="Order History" />
-                <PrimaryButton onButtonPress={() => {logoutUser(item)}} buttonText="Help" />
-                <PrimaryButton onButtonPress={() => {logoutUser(item)}} buttonText="Contact Us" />
-                <PrimaryButton onButtonPress={() => {logoutUser(item)}} buttonText="Settings" />
-                <PrimaryButton onButtonPress={() => {logoutUser(item)}} buttonText="Logout" />
+                <SecondaryButton onButtonPress={() => { alert("Go to Wishlist"); }} buttonText="Wishlist" iconName="ios-heart" />
+                <SecondaryButton onButtonPress={() => { alert("Go to Availability"); }} buttonText="Availability" iconName="ios-calendar" />
+                <SecondaryButton onButtonPress={() => { alert("Go to Order History"); }} buttonText="Order History" iconName="ios-archive" />
+                <View style={styles.separator} />
+                <SecondaryButton onButtonPress={() => { alert("Go to Help"); }} buttonText="Help" iconName="ios-help-buoy" />
+                <SecondaryButton onButtonPress={() => { alert("Go to Contact Us"); }} buttonText="Contact Us" iconName="ios-mail" />
+                <SecondaryButton onButtonPress={() => { alert("Go to Settings"); }} buttonText="Settings" iconName="md-cog" />
+                <SecondaryButton onButtonPress={() => {logoutUser(item)}} buttonText="Logout" iconName="md-exit" />
+                <View style={styles.bottomSpacer} />
               </>
             );
           }}
@@ -98,7 +104,7 @@ const styles = StyleSheet.create({
     paddingLeft: 15,
   },
   list: {
-    paddingTop: 5,
+    paddingTop: 5
   },
   button: {
     margin: 10,
@@ -132,5 +138,16 @@ const styles = StyleSheet.create({
     margin: 5,
     borderRadius: 40,
     backgroundColor: "white"
+  },
+  separator: {
+    borderBottomWidth: 2,
+    borderBottomColor: '#CCC',
+    marginLeft: 20,
+    marginRight: 20,
+    marginBottom: 20,
+    marginTop: 20,
+  },
+  bottomSpacer: {
+    height: 50
   }
 });
