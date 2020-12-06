@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Text as DefaultText, View as DefaultView } from 'react-native';
 import { Icon as DefaultIcon } from 'react-native-elements';
+import { ScrollView as DefaultScrollView } from "react-native-gesture-handler";
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
@@ -48,3 +49,11 @@ export function Icon(props: IconProps) {
 
   return <DefaultIcon iconStyle={{ color }} {...otherProps} />;
 }
+
+export function ScrollView(props: ViewProps) {
+  const { style, lightColor, darkColor, ...otherProps } = props;
+  const backgroundColor = useThemeColor({ light: lightColor, dark: darkColor }, 'background');
+
+  return <DefaultScrollView style={[{ backgroundColor }, style]} {...otherProps} />;
+}
+

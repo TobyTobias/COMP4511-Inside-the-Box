@@ -4,13 +4,11 @@ import {
   Image
 } from "react-native";
 
-import { ScrollView } from "react-native-gesture-handler";
-
 import NavBar from '../components/NavBar';
 
 import { Text, View } from '../components/Themed';
 import { BodyText, HeadingText } from '../components/ui/StyledText';
-import { SecondaryView } from '../components/ui/StyledView';
+import { StyledScrollView, SecondaryView } from '../components/ui/StyledView';
 import PrimaryButton from "../components/ui/PrimaryButton";
 
 export default function BoxDetail({ navigation, route }) {
@@ -24,7 +22,7 @@ export default function BoxDetail({ navigation, route }) {
   var dynamicPath = getImagePath(box.image_name);
 
   return (
-    <ScrollView>
+    <StyledScrollView>
       <View style={styles.container}>
         <NavBar navTitle={box.name} onBack={closeWindow} />
         <SecondaryView style={styles.boxDetail}
@@ -44,7 +42,7 @@ export default function BoxDetail({ navigation, route }) {
           </SecondaryView>
         </SecondaryView>
       </View>
-    </ScrollView>
+    </StyledScrollView>
   );
 }
 
