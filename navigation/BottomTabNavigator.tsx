@@ -7,10 +7,11 @@ import { View, Image } from "react-native";
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import FriendsScreen from '../screens/FriendsScreen';
-import FriendDetails from '../screens/FriendDetails';
+import FriendDetail from '../screens/FriendDetail';
 import BoxSearchScreen from '../screens/BoxSearchScreen';
 import BoxFeaturedScreen from '../screens/BoxFeaturedScreen';
 import BoxWishlistScreen from '../screens/BoxWishlistScreen';
+import BoxDetail from '../screens/BoxDetail';
 import TabFiveScreen from '../screens/ProfileSettingsScreen';
 import { BottomTabParamList, FriendsScreenParamList, BoxSearchScreenParamList, BoxFeaturedScreenParamList, BoxWishlistParamList, TabFiveParamList } from '../types';
 
@@ -100,8 +101,8 @@ function FriendsScreenNavigator({navigation}) {
         options={{ headerTitle: 'Friends Screen' }}
       />
       <FriendsScreenStack.Screen
-        name="FriendDetails"
-        component={FriendDetails}
+        name="FriendDetail"
+        component={FriendDetail}
         options={{ headerTitle: 'Friend Detail' }}
       />
     </FriendsScreenStack.Navigator>
@@ -116,6 +117,11 @@ function BoxSearchScreenNavigator() {
       <BoxSearchScreenStack.Screen
         name="BoxSearchScreen"
         component={BoxSearchScreen}
+      />      
+      <BoxSearchScreenStack.Screen
+        name="BoxDetail"
+        component={BoxDetail}
+        options={{ headerTitle: 'Box Detail' }}
       />
     </BoxSearchScreenStack.Navigator>
   );
@@ -144,6 +150,11 @@ function BoxWishlistScreenNavigator() {
         name="BoxWishlistScreen"
         component={BoxWishlistScreen}
         options={{ headerTitle: 'Tab Four Title' }}
+      />      
+      <BoxSearchScreenStack.Screen
+        name="BoxDetail"
+        component={BoxDetail}
+        options={{ headerTitle: 'Box Detail' }}
       />
     </BoxWishlistScreenStack.Navigator>
   );

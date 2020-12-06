@@ -74,7 +74,7 @@ export default function FriendsScreen({navigation}) {
                   key={item.id}
                   friend={item}
                   onPress={() =>                    
-                    navigation.navigate("FriendDetails", {
+                    navigation.navigate("FriendDetail", {
                       friend: item
                     })
                   }

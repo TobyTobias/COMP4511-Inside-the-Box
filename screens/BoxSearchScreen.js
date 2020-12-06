@@ -12,7 +12,7 @@ import BoxTile from '../components/BoxTile';
 import { BodyText, HeadingText } from '../components/ui/StyledText';
 import Swipable from 'react-native-gesture-handler/Swipeable';
 
-export default function BoxSearchScreen() {
+export default function BoxSearchScreen({navigation}) {
   const { boxes } = React.useContext(BoxesContext);
   const [localBoxes, setBoxes] = React.useState(boxes);
 
@@ -93,11 +93,11 @@ export default function BoxSearchScreen() {
                   <BoxTile
                     key={item.id}
                     box={item}
-                    // onPress={() =>                    
-                    //   navigation.navigate("FriendDetails", {
-                    //     friend: item
-                    //   })
-                    // }
+                    onPress={() =>                    
+                      navigation.navigate("BoxDetail", {
+                        box: item
+                      })
+                    }
                   />
                 </Swipable>
               );

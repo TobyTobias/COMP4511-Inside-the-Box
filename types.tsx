@@ -13,15 +13,16 @@ export type BottomTabParamList = {
 
 export type FriendsScreenParamList = {
   FriendsScreen: undefined;
-  FriendDetails: undefined;
+  FriendDetail: undefined;
 };
 
 export type FriendDetailParamList = {
-  FriendDetails: undefined;
+  FriendDetail: undefined;
 };
 
 export type BoxSearchScreenParamList = {
   BoxSearchScreen: undefined;
+  BoxDetail: undefined;
 };
 
 export type BoxFeaturedScreenParamList = {
@@ -30,6 +31,11 @@ export type BoxFeaturedScreenParamList = {
 
 export type BoxWishlistParamList = {
   BoxWishlistScreen: undefined;
+  BoxDetail: undefined;
+};
+
+export type BoxDetailParamList = {
+  BoxDetail: undefined;
 };
 
 export type TabFiveParamList = {

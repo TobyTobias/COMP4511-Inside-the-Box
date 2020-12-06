@@ -22,11 +22,11 @@ export default function BoxFeaturedScreen() {
                 <BoxTile
                   key={item.id}
                   box={item}
-                  // onPress={() =>                    
-                  //   navigation.navigate("FriendDetails", {
-                  //     friend: item
-                  //   })
-                  // }
+                  onPress={() =>                    
+                    navigation.navigate("BoxDetail", {
+                      box: item
+                    })
+                  }
                 />
               );
             }}
