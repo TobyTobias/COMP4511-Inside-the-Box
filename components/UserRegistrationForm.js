@@ -4,14 +4,14 @@ import {
   TextInput
 } from "react-native";
 
-import { Text, View, Icon } from './Themed';
+import { View, Icon } from './Themed';
 import PrimaryButton from "./ui/PrimaryButton";
-import { BodyText, HeadingText } from './ui/StyledText';
+import { BodyText } from './ui/StyledText';
 import { SecondaryView } from './ui/StyledView';
 
 import { useUser } from "../hooks/hooks";
 
-export default function UserRegistrationForm({onCloseModal = f => f}) {
+export default function UserRegistrationForm({ onCloseModal = f => f, onRegisterUser = f => f }) {
   const { registeredUsers, registerUser } = useUser();
   const [firstNameValue, setFirstNameValue] = useState("");
   const [lastNameValue, setLastNameValue] = useState("");
@@ -40,11 +40,8 @@ export default function UserRegistrationForm({onCloseModal = f => f}) {
     if (error) {
       alert(error);
     } else {
-      registerUser(firstNameValue, lastNameValue, emailValue, passwordValue);
-
-      if (registeredUsers.length > 0) {
-        onCloseModal(); 
-      }
+      onRegisterUser(firstNameValue, lastNameValue, emailValue, passwordValue);
+      onCloseModal(); 
     }
   };
 
@@ -53,7 +50,7 @@ export default function UserRegistrationForm({onCloseModal = f => f}) {
     lightColor="rgba(245,245,245,1)"
     darkColor="rgba(30,30,30,1)">
       <View style={styles.modalHeader}>
-        <Text style={styles.modalHeaderText}>Register</Text>
+        <BodyText style={styles.modalHeaderText}>Register</BodyText>
         <Icon
           type="ionicon"
           name="ios-close"
@@ -100,7 +97,8 @@ export default function UserRegistrationForm({onCloseModal = f => f}) {
           autoCapitalize="none"
           placeholder="password"
         />
-
+      </View>
+      <View style={{ marginLeft: 10, marginRight: 10, backgroundColor: 'rgba(0,0,0,0)' }}>
         <PrimaryButton onButtonPress={_registerUser} buttonText="Register" />
       </View>
     </SecondaryView>
@@ -120,11 +118,12 @@ const styles = StyleSheet.create({
     },
     top: 50,
     flex: 1,
-    paddingBottom: 50
+    paddingBottom: 100
   },
   formContainer: {
     backgroundColor: 'rgba(0,0,0,0)',
     margin: 20,
+    marginBottom: 0,
     flexDirection: "column",
   },
   modalHeader: {
@@ -146,7 +145,7 @@ const styles = StyleSheet.create({
   txtInput: {
     fontSize: 20,
     borderRadius: 5,
-    padding: 20,
+    padding: 15,
     marginBottom: 20,
     fontSize: 20,
     backgroundColor: 'rgba(200, 200, 200, 0.2)'

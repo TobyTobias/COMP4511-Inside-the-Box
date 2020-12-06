@@ -27,7 +27,7 @@ export const useFriends = () => {
   const [friends, setFriends] = useState(<IFriend[] | []>([]));
   const loadFriends = async () => {
     const friendData = await AsyncStorage.getItem(
-      "@InsideTheBoxStore:Friends"
+      "@FriendsStore:Friends"
     );
     if (friendData) {
       const friends = JSON.parse(friendData);
@@ -44,7 +44,7 @@ export const useFriends = () => {
   useEffect(() => {
     console.log("friends: " + JSON.stringify(friends));
     AsyncStorage.setItem(
-      "@InsideTheBoxStore:Friends",
+      "@FriendsStore:Friends",
       JSON.stringify(friends)
     );
   }, [friends]);
@@ -66,7 +66,7 @@ export const useUser = () => {
 
   const loadUsers = async () => {
     const userData = await AsyncStorage.getItem(
-      "@InsideTheBoxStore:RegisteredUsers"
+      "@RegisteredUsersStore:RegisteredUsers"
     );
     if (userData) {
       const registeredUsers = JSON.parse(userData);
@@ -83,7 +83,7 @@ export const useUser = () => {
   useEffect(() => {
     console.log("AsyncStorage.setItem registeredUsers: " + JSON.stringify(registeredUsers));
     AsyncStorage.setItem(
-      "@InsideTheBoxStore:RegisteredUsers",
+      "@RegisteredUsersStore:RegisteredUsers",
       JSON.stringify(registeredUsers)
     );
   }, [registeredUsers]);
@@ -94,10 +94,9 @@ export const useUser = () => {
     setUsers([newUser]);
   };
   
-  // const logoutUser = (registeredUser) => {
-  //   // can do other stuff here if needed?
-  //   setUser(<IUser>({}));
-  // };
+  const logoutUser = (registeredUser) => {
+    setUsers([]);
+  };
 
-  return { registeredUsers, registerUser };
+  return { registeredUsers, registerUser, logoutUser };
 }

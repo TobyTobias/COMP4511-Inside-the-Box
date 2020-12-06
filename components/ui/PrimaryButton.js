@@ -7,7 +7,6 @@ import {
 } from "react-native";
 
 import { Icon } from 'react-native-elements';
-import { BodyText } from './StyledText';
 
 export default function PrimaryButton({ onButtonPress = f => f, buttonText = ""}) {
   return (
@@ -21,7 +20,7 @@ export default function PrimaryButton({ onButtonPress = f => f, buttonText = ""}
         }}
       >
         <>
-          <BodyText style={styles.buttonContainerText}>{buttonText}</BodyText>
+          <Text style={styles.buttonContainerText}>{buttonText}</Text>
           <Icon
             type="ionicon"
             name="ios-arrow-round-forward" 
@@ -39,7 +38,7 @@ const styles = StyleSheet.create({
       borderRadius: 5,
       padding: 15,
       backgroundColor: '#7560C7',
-      marginBottom: 20,
+      margin: 10,
       elevation: 2,
       shadowOpacity: 0.3,
       shadowRadius: 3,

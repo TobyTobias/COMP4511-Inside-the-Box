@@ -81,7 +81,7 @@ export default function BoxSearchScreen() {
             style={{borderRadius: 10}}
           />
         </View>
-      <View style={styles.boxesContainer}>
+        <View style={styles.boxesContainer}>
           <FlatList
             style={[styles.list]}
             data={localBoxes}

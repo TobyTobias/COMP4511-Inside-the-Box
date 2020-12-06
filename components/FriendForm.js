@@ -51,8 +51,8 @@ export default function FriendForm({ onNewFriend = f => f, onCloseModal = f => f
           placeholder="first name"
         />
 
-        <PrimaryButton onButtonPress={addFriend} buttonText="Add friend" />
       </View>
+      <PrimaryButton onButtonPress={addFriend} buttonText="Add friend" />
     </SecondaryView>
   );
 }
@@ -70,10 +70,12 @@ const styles = StyleSheet.create({
     },
     top: 50,
     flex: 1,
+    paddingBottom: 50
   },
   formContainer: {
     backgroundColor: 'rgba(0,0,0,0)',
     margin: 20,
+    marginBottom: 0,
     flexDirection: "column",
   },
   modalHeader: {
@@ -94,9 +96,9 @@ const styles = StyleSheet.create({
   txtInput: {
     fontSize: 20,
     borderRadius: 5,
-    padding: 20,
-    backgroundColor: '#C9E3EB',
+    padding: 15,
     marginBottom: 20,
     fontSize: 20,
+    backgroundColor: 'rgba(200, 200, 200, 0.2)'
   },
 });

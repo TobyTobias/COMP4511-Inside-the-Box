@@ -1,53 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Alert, FlatList, StyleSheet, Modal } from 'react-native';
+import { View } from '../components/Themed';
 
-import EditScreenInfo from '../components/EditScreenInfo';
-import { Text, View } from '../components/Themed';
-
-import { SearchBar } from 'react-native-elements';
-
-
-import { BoxesContext } from '../context/BoxesContext';
 import BoxTile from '../components/BoxTile';
-import { BodyText, HeadingText } from '../components/ui/StyledText';
-import Swipable from 'react-native-gesture-handler/Swipeable';
-
-// this user retrieval should be done on index but couldn't figure out how to get it to work with ts
-import { useUser } from "../hooks/hooks";
-import UserRegistrationForm from "../components/UserRegistrationForm";
-import { ScrollView } from "react-native-gesture-handler";
+import { HeadingText } from '../components/ui/StyledText';
 
 export default function BoxFeaturedScreen() {
-
-  const [modalVisible, setModalVisible] = useState(true);
-
-  const { registeredUsers } = useUser();
-  const [localUser, setUser] = React.useState(registeredUsers);
-  
-  useEffect(() => {
-    console.log("localUser: " + JSON.stringify(localUser));
-    setModalVisible(registeredUsers.length == 0 ? true : false);
-  }, [localUser] );
-
-  const hideRegistrationModal = () => {
-    console.log("CLOSE MODAL");
-    setModalVisible(!modalVisible);
-  };
-  
   return (
     <>
-      <Modal
-        animationType="slide"
-        transparent={false}
-        visible={modalVisible}
-        onRequestClose={() => {
-          Alert.alert("Modal has been closed.");
-        }}
-      >
-        <ScrollView style={styles.modalContainer}>
-        <UserRegistrationForm onCloseModal={hideRegistrationModal} />
-        </ScrollView>
-      </Modal>
       <View style={styles.container}>
         <View style={styles.headingContainer}>
           <HeadingText>Featured</HeadingText>
@@ -72,8 +32,7 @@ export default function BoxFeaturedScreen() {
             }}
           />
         </View>
-      </View>
-      
+      </View>      
     </>
   );
 }
